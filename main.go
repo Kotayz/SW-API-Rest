@@ -3,9 +3,8 @@ package main
 import (
 	"net/http"
 
-	"sw-api-rest/api/planet/model"
-	
 	. "sw-api-rest/api/planet/config"
+	"sw-api-rest/api/planet/model"
 
 	planetAPI "sw-api-rest/api/planet"
 
@@ -60,7 +59,9 @@ func GetPlanets(c *gin.Context) {
 }
 
 func GetPlanet(c *gin.Context) {
-	planet, err := planetAPI.GetPlanet("1")
+	id := c.Param("id")
+
+	planet, err := planetAPI.GetPlanet(id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError,
 			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
