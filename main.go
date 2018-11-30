@@ -6,7 +6,6 @@ import (
 	"api_rest/api/planet/model"
 	
 	. "api_rest/api/planet/config"
-	// . "api_rest/api/planet/config/dao"
 
 	planetAPI "api_rest/api/planet"
 
