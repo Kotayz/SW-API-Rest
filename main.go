@@ -60,10 +60,23 @@ func GetPlanets(c *gin.Context) {
 }
 
 func GetPlanet(c *gin.Context) {
-	err := planetAPI.GetPlanet(c)
+	planet, err := planetAPI.GetPlanet()
 	if err != nil {
-
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
+		return
 	}
+	c.JSON(http.StatusOK, gin.H{"status": "success", "planet": planet})
+}
+
+func GetPlanetByName(c *gin.Context) {
+	planet, err := planetAPI.GetPlanetByName(c)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"status": "success", "planet": planet})
 }
 
 func UpdatePlanet(c *gin.Context) {

@@ -61,8 +61,22 @@ func (p *Planet) Save() error {
 	return nil
 }
 
-func (Planet) Get() error {
-	return nil
+func (Planet) Get(id string) (Planet, error) {
+	planet, err := resource.GetByID(id)
+	if err != nil {
+		return Planet{}, err
+	}
+
+	return planet, nil
+}
+
+func (Planet) GetByName() (Planet, error) {
+	planet, err := resource.GetByName()
+	if err != nil {
+		return Planet{}, err
+	}
+
+	return planet, nil
 }
 
 func (Planet) GetAll() ([]Planet, error) {

@@ -35,6 +35,12 @@ func (m *DAO) GetByID(id string) (Planet, error) {
 	return planet, err
 }
 
+func (m *DAO) GetByName() (Planet, error) {
+	var planet Planet
+	err := db.C("planets").Find(bson.M{"nome": "Yavin IV"}).One(&planet)
+	return planet, err
+}
+
 func (m *DAO) Create(planet *Planet) error {
 	planet.ID = bson.NewObjectId()
 	err := db.C("planets").Insert(planet)

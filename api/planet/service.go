@@ -14,11 +14,13 @@ func GetPlanets() ([]model.Planet, error) {
 	return model.Planet{}.GetAll()
 }
 
-func GetPlanet(c *gin.Context) error {
-	c.JSON(200, gin.H{
-		"message": "Teste Hello",
-	})
-	return nil
+func GetPlanet(id string) (model.Planet, error) {
+	return model.Planet{}.Get(id)
+
+}
+
+func GetPlanetByName(c *gin.Context) (model.Planet, error) {
+	return model.Planet{}.GetByName()
 }
 
 func UpdatePlanet(c *gin.Context) error {
