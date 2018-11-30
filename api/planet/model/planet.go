@@ -101,22 +101,21 @@ func GetPlanetRequest (planetName string) (int, error) {
 	defer resp.Body.Close()
 	body, readErr := ioutil.ReadAll(resp.Body)
 	if readErr != nil {
-		log.Fatal(readErr)
+		return 0, readErr
 	}
 	
 	var result SWAPIResult
 	unmarshalErr := json.Unmarshal(body, &result)
 	if unmarshalErr != nil {
-		log.Fatal(unmarshalErr)
+		return 0, unmarshalErr
 	}
 
 	if len(result.Results) > 0 {
 		if len(result.Results[0].Films) > 0 {
 			return len(result.Results[0].Films), nil
 		}
-	} else {
-		return 0, errors.New("Planet not found")
+		return 0, nil
 	}
 
-	return 0, nil
+	return 0, errors.New("Planet not found")
 }
