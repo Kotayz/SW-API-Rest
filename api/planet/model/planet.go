@@ -1,16 +1,45 @@
 package model
 
 import (
+	"fmt"
 	"errors"
+    "encoding/json"
+	"log"
+	"net/http"
+	// "time"
+	"io/ioutil"
+	"net/url"
 
     "gopkg.in/mgo.v2/bson"
 )
 
 type Planet struct {
-	ID		bson.ObjectId `bson:"_id" json:"id"`
-	Nome	string 		  `bson:"nome" json:"nome"`
-	Clima	string 		  `bson:"clima" json:"clima"`
-	Terreno	string 		  `bson:"terreno" json:"terreno"`
+	ID		  bson.ObjectId `bson:"_id" json:"id"`
+	Nome	  string 		`bson:"nome" json:"nome"`
+	Clima	  string 		`bson:"clima" json:"clima"`
+	Terreno	  string 		`bson:"terreno" json:"terreno"`
+	Aparicoes int			`bson:"aparicoes" json:"aparicoes"`
+}
+
+type SWAPIResult struct {
+	Results []SWAPIPlanet `json:"results"`
+}
+
+type SWAPIPlanet struct {
+	Name           string   `json:"name"`
+	RotationPeriod string   `json:"rotation_period"`
+	OrbitalPeriod  string   `json:"orbital_period"`
+	Diameter       string   `json:"diameter"`
+	Climate        string   `json:"climate"`
+	Gravity        string   `json:"gravity"`
+	Terrain        string   `json:"terrain"`
+	SurfaceWater   string   `json:"surface_water"`
+	Population     string   `json:"population"`
+	Residents      []string `json:"residents"`
+	Films          []string `json:"films"`
+	Created        string   `json:"created"`
+	Edited         string   `json:"edited"`
+	URL            string   `json:"url"`
 }
 
 func (p *Planet) Save() error {
@@ -58,4 +87,36 @@ func (p *Planet) Validate() error {
 	}
 
 	return nil
+}
+
+func GetPlanetRequest () (int, error) {
+	name := url.QueryEscape("Dagobah")
+	url := fmt.Sprintf("http://swapi.co/api/planets/?search=%s", name)	
+	
+	resp, err := http.Get(url)
+	if err != nil {
+		return 0, err
+	}
+	
+	defer resp.Body.Close()
+	body, readErr := ioutil.ReadAll(resp.Body)
+	if readErr != nil {
+		log.Fatal(readErr)
+	}
+	
+	var result SWAPIResult
+	unmarshalErr := json.Unmarshal(body, &result)
+	if unmarshalErr != nil {
+		log.Fatal(unmarshalErr)
+	}
+	
+	if len(result.Results) > 0 {
+		if len(result.Results[0].Films) > 0 {
+			return len(result.Results[0].Films), nil
+		}
+	} else {
+		return 0, errors.New("Planet not found")
+	}
+
+	return 0, nil
 }
