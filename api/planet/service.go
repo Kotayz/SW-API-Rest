@@ -1,7 +1,7 @@
 package planet
 
 import (
-	"api_rest/api/planet/model"
+	"sw-api-rest/api/planet/model"
 
 	"github.com/gin-gonic/gin"
 )

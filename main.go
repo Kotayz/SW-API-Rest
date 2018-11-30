@@ -3,11 +3,11 @@ package main
 import (
 	"net/http"
 
-	"api_rest/api/planet/model"
+	"sw-api-rest/api/planet/model"
 	
-	. "api_rest/api/planet/config"
+	. "sw-api-rest/api/planet/config"
 
-	planetAPI "api_rest/api/planet"
+	planetAPI "sw-api-rest/api/planet"
 
 	"github.com/gin-gonic/gin"
 )
@@ -60,7 +60,7 @@ func GetPlanets(c *gin.Context) {
 }
 
 func GetPlanet(c *gin.Context) {
-	planet, err := planetAPI.GetPlanet()
+	planet, err := planetAPI.GetPlanet("1")
 	if err != nil {
 		c.JSON(http.StatusInternalServerError,
 			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
