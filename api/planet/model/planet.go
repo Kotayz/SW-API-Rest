@@ -89,8 +89,8 @@ func (p *Planet) Validate() error {
 	return nil
 }
 
-func GetPlanetRequest () (int, error) {
-	name := url.QueryEscape("Dagobah")
+func GetPlanetRequest (planetName string) (int, error) {
+	name := url.QueryEscape(planetName)
 	url := fmt.Sprintf("http://swapi.co/api/planets/?search=%s", name)	
 	
 	resp, err := http.Get(url)
@@ -109,7 +109,7 @@ func GetPlanetRequest () (int, error) {
 	if unmarshalErr != nil {
 		log.Fatal(unmarshalErr)
 	}
-	
+
 	if len(result.Results) > 0 {
 		if len(result.Results[0].Films) > 0 {
 			return len(result.Results[0].Films), nil
