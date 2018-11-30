@@ -1,15 +1,14 @@
 package model
 
 import (
+	"log"
 	"fmt"
 	"errors"
-    "encoding/json"
-	"log"
-	"net/http"
-	// "time"
-	"io/ioutil"
 	"net/url"
-
+	"net/http"
+	"io/ioutil"
+    "encoding/json"	
+	
     "gopkg.in/mgo.v2/bson"
 )
 
@@ -48,6 +47,12 @@ func (p *Planet) Save() error {
 		return err
 	}
 
+	aparicoes, err := GetPlanetRequest(p.Nome)
+	if err != nil {
+		return err
+	}
+
+	p.Aparicoes = aparicoes
 	createErr := resource.Create(p)
 	if createErr != nil {
 		return createErr
@@ -95,18 +100,21 @@ func GetPlanetRequest (planetName string) (int, error) {
 	
 	resp, err := http.Get(url)
 	if err != nil {
+		log.Fatal(err)
 		return 0, err
 	}
 	
 	defer resp.Body.Close()
 	body, readErr := ioutil.ReadAll(resp.Body)
 	if readErr != nil {
+		log.Fatal(readErr)
 		return 0, readErr
 	}
 	
 	var result SWAPIResult
 	unmarshalErr := json.Unmarshal(body, &result)
 	if unmarshalErr != nil {
+		log.Fatal(unmarshalErr)
 		return 0, unmarshalErr
 	}
 
