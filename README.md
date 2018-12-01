@@ -5,16 +5,11 @@ API Rest para Cadastro de Planetas da franquia Star Wars
 Essa API foi desenvolvida em [Golang](https://golang.org/).
 
 ### Requerimentos
-* Go versão 1.6 ou superior
-* Glide versão 0.13 ou superior
-* MongoDB versão 3.4.18 ou superior
+* Instalação [MongoDB] versão 1.6 ou superior(https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt)
 
+* Instalação [Glide](https://github.com/Masterminds/glide) versão 0.13 ou superior
 
-* Instalação [MongoDB](https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt)
-
-* Instalação [Glide](https://github.com/Masterminds/glide)
-
-* Instalação e Configuração [Golang](https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
+* Instalação e Configuração [Golang] versão 3.4.18 ou superior(https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
 
 ### Dependencias do projeto
  * github.com/BurntSushi/toml
