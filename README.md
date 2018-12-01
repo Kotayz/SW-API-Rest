@@ -20,10 +20,10 @@ Instalação e configuração go:
 https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04
 
 Dependencias do projeto:
-    * github.com/BurntSushi/toml
-    * github.com/gin-gonic/gin
-    * gopkg.in/mgo.v2
-    * gopkg.in/mgo.v2/bson
+ * github.com/BurntSushi/toml
+ * github.com/gin-gonic/gin
+ * gopkg.in/mgo.v2
+ * gopkg.in/mgo.v2/bson
 
 Para instalar dependencias, executar o comando: glide install
 
