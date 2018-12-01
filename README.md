@@ -15,7 +15,7 @@ MongoDB versão 3.4.18 ou superior
 
 * Instalação [Glide](https://github.com/Masterminds/glide)
 
-* Instalação e Configuração [Golang(https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
+* Instalação e Configuração [Golang](https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
 
 Dependencias do projeto:
  * github.com/BurntSushi/toml
