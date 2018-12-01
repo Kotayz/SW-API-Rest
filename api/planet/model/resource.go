@@ -1,6 +1,7 @@
 package model
 
 import (
+	"encoding/json"
 	"log"
 
 	mgo "gopkg.in/mgo.v2"
@@ -35,9 +36,13 @@ func (m *DAO) GetByID(id string) (Planet, error) {
 	return planet, err
 }
 
-func (m *DAO) GetByName() (Planet, error) {
+func (m *DAO) GetByName(planetName string) (Planet, error) {
 	var planet Planet
-	err := db.C("planets").Find(bson.M{"nome": "Yavin IV"}).One(&planet)
+	pipeString := `[{"$match":{"username":` + planetName + `}}]` //Utilizado '$match' para evitar problema de uppercase ou lower case
+	pipe := []bson.M{}
+	err := json.Unmarshal([]byte(pipeString), &pipe)
+	err = db.C("planets").Pipe(pipe).One(&planet)
+
 	return planet, err
 }
 

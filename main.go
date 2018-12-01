@@ -27,11 +27,14 @@ func main() {
 	router.POST("/", CreatePlanet)
 	router.GET("/", GetPlanets)
 	router.GET("/:id", GetPlanet)
+	router.POST("/filter", GetPlanetByName)
 	router.PUT("/:id", UpdatePlanet)
 	router.DELETE("/:id", DeletePlanet)
+
 	router.Run()
 }
 
+// Método para criar planetas
 func CreatePlanet(c *gin.Context) {
 	var planet model.Planet
 	if err := c.BindJSON(&planet); err != nil {
@@ -48,6 +51,7 @@ func CreatePlanet(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{"status": "Planet Created", "planet": planet})
 }
 
+// Método para listar todos os planetas
 func GetPlanets(c *gin.Context) {
 	planets, err := planetAPI.GetPlanets()
 	if err != nil {
@@ -58,6 +62,7 @@ func GetPlanets(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "success", "planets": planets})
 }
 
+// Método para retornar um planeta a partir do id
 func GetPlanet(c *gin.Context) {
 	id := c.Param("id")
 
@@ -70,8 +75,16 @@ func GetPlanet(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "success", "planet": planet})
 }
 
+// Método para retornar um planeta a partir do nome
 func GetPlanetByName(c *gin.Context) {
-	planet, err := planetAPI.GetPlanetByName(c)
+	var planet model.Planet
+	if err := c.BindJSON(&planet); err != nil {
+		c.JSON(http.StatusBadRequest,
+			gin.H{"status": http.StatusBadRequest, "error": err.Error(), "params": planet})
+		return
+	}
+
+	planet, err := planetAPI.GetPlanetByName(planet.Nome)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError,
 			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
@@ -80,6 +93,7 @@ func GetPlanetByName(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "success", "planet": planet})
 }
 
+// Método para atualizar planeta
 func UpdatePlanet(c *gin.Context) {
 	err := planetAPI.UpdatePlanet(c)
 	if err != nil {
@@ -87,9 +101,14 @@ func UpdatePlanet(c *gin.Context) {
 	}
 }
 
+// Método para excluir planeta
 func DeletePlanet(c *gin.Context) {
-	err := planetAPI.DeletePlanet(c)
-	if err != nil {
+	id := c.Param("id")
 
+	if err := planetAPI.DeletePlanet(id); err != nil {
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
+		return
 	}
+	c.JSON(http.StatusOK, gin.H{"status": "Planter deleted"})
 }

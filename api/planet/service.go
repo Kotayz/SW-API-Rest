@@ -16,17 +16,16 @@ func GetPlanets() ([]model.Planet, error) {
 
 func GetPlanet(id string) (model.Planet, error) {
 	return model.Planet{}.Get(id)
-
 }
 
-func GetPlanetByName(c *gin.Context) (model.Planet, error) {
-	return model.Planet{}.GetByName()
+func GetPlanetByName(planetName string) (model.Planet, error) {
+	return model.Planet{}.GetByName(planetName)
 }
 
 func UpdatePlanet(c *gin.Context) error {
 	return nil
 }
 
-func DeletePlanet(c *gin.Context) error {
-	return nil
+func DeletePlanet(id string) error {
+	return model.Planet{}.Delete(id)
 }
