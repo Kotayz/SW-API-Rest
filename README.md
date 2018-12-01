@@ -10,14 +10,12 @@ Go versão 1.6 ou superior
 Glide versão 0.13 ou superior
 MongoDB versão 3.4.18 ou superior
 
-Instalação MongoDB:
-https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt
 
-Instalação Glide:
-https://github.com/Masterminds/glide
+* Instalação [MongoDB](https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt)
 
-Instalação e configuração go:
-https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04
+* Instalação [Glide](https://github.com/Masterminds/glide)
+
+* Instalação e Configuração [Golang(https://www.digitalocean.com/community/tutorials/how-to-install-go-1-6-on-ubuntu-16-04)
 
 Dependencias do projeto:
  * github.com/BurntSushi/toml
