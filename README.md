@@ -5,10 +5,9 @@ API Rest para Cadastro de Planetas da franquia Star Wars
 Essa API foi desenvolvida em [Golang](https://golang.org/).
 
 ### Requerimentos
-
-Go versão 1.6 ou superior
-Glide versão 0.13 ou superior
-MongoDB versão 3.4.18 ou superior
+* Go versão 1.6 ou superior
+* Glide versão 0.13 ou superior
+* MongoDB versão 3.4.18 ou superior
 
 
 * Instalação [MongoDB](https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt)
