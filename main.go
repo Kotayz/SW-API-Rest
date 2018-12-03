@@ -101,5 +101,5 @@ func DeletePlanet(c *gin.Context) {
 			gin.H{"status": http.StatusInternalServerError, "error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"status": "Planter deleted"})
+	c.JSON(http.StatusOK, gin.H{"status": "Planet deleted"})
 }

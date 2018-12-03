@@ -109,6 +109,7 @@ func (p *Planet) Validate() error {
 	return nil
 }
 
+//Método para consultar a quantidade de aparições
 func GetPlanetRequest(planetName string) (int, error) {
 	name := url.QueryEscape(planetName)
 	url := fmt.Sprintf("http://swapi.co/api/planets/?search=%s", name)
