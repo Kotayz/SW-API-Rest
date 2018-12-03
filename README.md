@@ -27,13 +27,13 @@ Essa API utiliza a porta padrão 8080, abaixo seguem exemplos para utilização 
 
 > Criar planeta:
 
-Method: POST
-url: http://localhost:8080/
-json Exemplo:
-{ 
-    "nome": "Yavin IV",
-    "clima": "temperate, tropical",
-    "terreno": "jungle, rainforests"    
+Method: POST  
+url: http://localhost:8080/  
+json Exemplo:  
+{  
+    "nome": "Yavin IV",  
+    "clima": "temperate, tropical",  
+    "terreno": "jungle, rainforests"  
 }
 
 > Listar planetas:
@@ -43,24 +43,24 @@ url: http://localhost:8080/
 
 > Buscar planeta por ID:
 
-Method: GET
-url: http://localhost:8080/{id do planeta}
+Method: GET  
+url: http://localhost:8080/{id do planeta}  
 url Exemplo: http://localhost:8080/5c0167ea03dea7318925137c
 
 > Buscar planeta por Nome:
 
-Method: POST
-url: http://localhost:8080/filter
-json Exemplo:
-{
-  "nome": "Yavin IV"
+Method: POST  
+url: http://localhost:8080/filter  
+json Exemplo:  
+{  
+  "nome": "Yavin IV"  
 }
 
 > Excluir planeta:
 
-Method: DELETE
-url: http://localhost:8080/{id do planeta}
-url Exemplo: http://localhost:8080/5c0167ea03dea7318925137c
+Method: DELETE  
+url: http://localhost:8080/{id do planeta}  
+url Exemplo: http://localhost:8080/5c0167ea03dea7318925137c  
 
 ## Desenvolvido por
 
