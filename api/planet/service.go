@@ -2,8 +2,6 @@ package planet
 
 import (
 	"sw-api-rest/api/planet/model"
-
-	"github.com/gin-gonic/gin"
 )
 
 func CreatePlanet(planet *model.Planet) error {
@@ -20,10 +18,6 @@ func GetPlanet(id string) (model.Planet, error) {
 
 func GetPlanetByName(planetName string) (model.Planet, error) {
 	return model.Planet{}.GetByName(planetName)
-}
-
-func UpdatePlanet(c *gin.Context) error {
-	return nil
 }
 
 func DeletePlanet(id string) error {

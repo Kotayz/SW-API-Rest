@@ -88,10 +88,6 @@ func (Planet) GetAll() ([]Planet, error) {
 	return planets, nil
 }
 
-func (Planet) Update() error {
-	return nil
-}
-
 func (Planet) Delete(id string) error {
 	err := resource.Delete(id)
 	if err != nil {

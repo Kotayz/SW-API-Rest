@@ -28,7 +28,6 @@ func main() {
 	router.GET("/", GetPlanets)
 	router.GET("/:id", GetPlanet)
 	router.POST("/filter", GetPlanetByName)
-	router.PUT("/:id", UpdatePlanet)
 	router.DELETE("/:id", DeletePlanet)
 
 	router.Run()
@@ -91,14 +90,6 @@ func GetPlanetByName(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"status": "success", "planet": planet})
-}
-
-// Método para atualizar planeta
-func UpdatePlanet(c *gin.Context) {
-	err := planetAPI.UpdatePlanet(c)
-	if err != nil {
-
-	}
 }
 
 // Método para excluir planeta

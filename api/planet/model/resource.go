@@ -22,6 +22,12 @@ func (m *DAO) Connect() {
 	db = session.DB(m.Database)
 }
 
+func (m *DAO) Create(planet *Planet) error {
+	planet.ID = bson.NewObjectId()
+	err := db.C("planets").Insert(planet)
+	return err
+}
+
 func (m *DAO) GetAll() ([]Planet, error) {
 	var planets []Planet
 	err := db.C("planets").Find(bson.M{}).All(&planets)
@@ -40,18 +46,7 @@ func (m *DAO) GetByName(planetName string) (Planet, error) {
 	return planet, err
 }
 
-func (m *DAO) Create(planet *Planet) error {
-	planet.ID = bson.NewObjectId()
-	err := db.C("planets").Insert(planet)
-	return err
-}
-
 func (m *DAO) Delete(id string) error {
 	err := db.C("planets").RemoveId(bson.ObjectIdHex(id))
-	return err
-}
-
-func (m *DAO) Update(id string, planet Planet) error {
-	err := db.C("planets").UpdateId(bson.ObjectIdHex(id), &planet)
 	return err
 }
