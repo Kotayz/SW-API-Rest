@@ -38,7 +38,7 @@ json Exemplo:
 
 > Listar planetas:
 
-Method: GET
+Method: GET  
 url: http://localhost:8080/
 
 > Buscar planeta por ID:
