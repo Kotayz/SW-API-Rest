@@ -25,7 +25,7 @@ Para iniciar o serviço, executar o comando: go run main.go
 
 Essa API utiliza a porta padrão 8080, abaixo seguem exemplos para utilização da api
 
-> Criar planeta:
+> <b>Criar planeta</b>:
 
 Method: POST  
 url: http://localhost:8080/  
